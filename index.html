@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeslice Viewer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="text-top-right">TIMESLICE v.1.0.1</div>
+
+    <div id="text-bottom-left">
+        RETRACING THE CAR PARK<br>
+        From I-Thou to I-It<br>
+        2026
+    </div>
+
+    <div id="media-container">
+        <div id="canvas-container"></div>
+        <video id="video-player" src="models/my_video.mp4" loop muted playsinline disablePictureInPicture controlsList="nodownload" preload="auto"></video>
+    </div>
+
+    <button id="toggle-button">Switch to Video</button>
+
+    <div id="gis-info-panel">
+        LAT: 3.149682<br>
+        LON: 101.616348<br>
+        Location: Leeds, the United Kingdom<br>
+    </div>
+
+    <button id="gis-toggle-btn">info</button>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

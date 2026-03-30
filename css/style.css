@@ -1,0 +1,123 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#text-top-right {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+#text-bottom-left {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    z-index: 10;
+}
+
+#media-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    transform: translateY(-50%);
+    background: linear-gradient(to bottom, #444444, #111111);
+}
+
+#canvas-container, #video-player {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    -webkit-user-drag: none;
+}
+
+#video-player {
+    display: none;
+    pointer-events: none;
+    z-index: 5;
+}
+
+#toggle-button {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    padding: 12px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#gis-info-panel {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.6;
+    z-index: 10;
+    display: none;
+}
+
+#location-text {
+    font-size: calc(14px - 4pt);
+}
+
+#gis-toggle-btn {
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    padding: 12px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+@media (orientation: portrait) {
+    #media-container {
+        height: 100%;
+    }
+    
+    #text-top-right, #gis-info-panel, #gis-toggle-btn {
+        top: 60px;
+    }
+    
+    #text-bottom-left, #toggle-button {
+        bottom: 60px;
+    }
+}
