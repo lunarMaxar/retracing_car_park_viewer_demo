@@ -5,7 +5,12 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const container = document.getElementById('canvas-container');
 const scene = new THREE.Scene();
 
-const aspect = window.innerWidth / (window.innerHeight * 0.6);
+const getContainerHeight = () => {
+    return window.innerHeight > window.innerWidth ? window.innerHeight : window.innerHeight * 0.6;
+};
+
+let currentHeight = getContainerHeight();
+const aspect = window.innerWidth / currentHeight;
 const frustumSize = 0.1; 
 const camera = new THREE.OrthographicCamera(
     (frustumSize * aspect) / -2,
@@ -20,7 +25,7 @@ camera.position.set(1, 1, 1);
 
 const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
+renderer.setSize(window.innerWidth, currentHeight);
 container.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -57,35 +62,36 @@ let showingVideo = false;
 toggleBtn.addEventListener('click', () => {
     showingVideo = !showingVideo;
     if (showingVideo) {
-        container.style.display = 'none';
-        videoPlayer.style.display = 'block';
+        container.classList.add('hidden-canvas');
+        videoPlayer.classList.add('active-video');
         
         videoPlayer.load();
         const playPromise = videoPlayer.play();
         
         if (playPromise !== undefined) {
             playPromise.catch(error => {
-                console.log("Playback prevented by browser.");
+                console.log("Playback blocked");
             });
         }
         
         toggleBtn.textContent = 'Switch to 3D';
     } else {
-        container.style.display = 'block';
-        videoPlayer.style.display = 'none';
+        container.classList.remove('hidden-canvas');
+        videoPlayer.classList.remove('active-video');
         videoPlayer.pause();
         toggleBtn.textContent = 'Switch to Video';
     }
 });
 
 window.addEventListener('resize', () => {
-    const newAspect = window.innerWidth / (window.innerHeight * 0.6);
+    currentHeight = getContainerHeight();
+    const newAspect = window.innerWidth / currentHeight;
     camera.left = (frustumSize * newAspect) / -2;
     camera.right = (frustumSize * newAspect) / 2;
     camera.top = frustumSize / 2;
     camera.bottom = frustumSize / -2;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
+    renderer.setSize(window.innerWidth, currentHeight);
 });
 
 const gisToggleBtn = document.getElementById('gis-toggle-btn');
