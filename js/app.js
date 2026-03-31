@@ -5,12 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const container = document.getElementById('canvas-container');
 const scene = new THREE.Scene();
 
-const getContainerHeight = () => {
-    return window.innerHeight > window.innerWidth ? window.innerHeight : window.innerHeight * 0.6;
-};
-
-let currentHeight = getContainerHeight();
-const aspect = window.innerWidth / currentHeight;
+const aspect = window.innerWidth / (window.innerHeight * 0.6);
 const frustumSize = 0.14;
 const camera = new THREE.OrthographicCamera(
     (frustumSize * aspect) / -2,
@@ -25,7 +20,7 @@ camera.position.set(1, 1, 1);
 
 const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, currentHeight);
+renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
 container.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -62,36 +57,42 @@ let showingVideo = false;
 toggleBtn.addEventListener('click', () => {
     showingVideo = !showingVideo;
     if (showingVideo) {
-        container.classList.add('hidden-canvas');
-        videoPlayer.classList.add('active-video');
+        container.style.opacity = '0';
+        container.style.visibility = 'hidden';
+        
+        videoPlayer.style.opacity = '1';
+        videoPlayer.style.visibility = 'visible';
         
         videoPlayer.load();
         const playPromise = videoPlayer.play();
         
         if (playPromise !== undefined) {
             playPromise.catch(error => {
-                console.log("Playback blocked");
+                console.log("Playback prevented by browser.");
             });
         }
         
         toggleBtn.textContent = 'Switch to 3D';
     } else {
-        container.classList.remove('hidden-canvas');
-        videoPlayer.classList.remove('active-video');
+        container.style.opacity = '1';
+        container.style.visibility = 'visible';
+        
+        videoPlayer.style.opacity = '0';
+        videoPlayer.style.visibility = 'hidden';
+        
         videoPlayer.pause();
         toggleBtn.textContent = 'Switch to Video';
     }
 });
 
 window.addEventListener('resize', () => {
-    currentHeight = getContainerHeight();
-    const newAspect = window.innerWidth / currentHeight;
+    const newAspect = window.innerWidth / (window.innerHeight * 0.6);
     camera.left = (frustumSize * newAspect) / -2;
     camera.right = (frustumSize * newAspect) / 2;
     camera.top = frustumSize / 2;
     camera.bottom = frustumSize / -2;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, currentHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
 });
 
 const gisToggleBtn = document.getElementById('gis-toggle-btn');

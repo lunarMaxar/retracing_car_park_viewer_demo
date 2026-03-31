@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Timeslice Viewer</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="text-top-right">TIMESLICE v.1.0.1</div>
-
+    
     <div id="text-bottom-left">
         RETRACING THE CAR PARK<br>
-        From I-Thou to I-It<br>
+        from i-thou to i-it<br>
         2026
     </div>
 
     <div id="media-container">
         <div id="canvas-container"></div>
-        <video id="video-player" src="models/my_video.mp4" loop muted playsinline disablePictureInPicture controlsList="nodownload" preload="auto"></video>
+        <video id="video-player" src="https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/my_video.mp4" loop muted playsinline disablePictureInPicture controlsList="nodownload" preload="auto"></video>
     </div>
 
     <button id="toggle-button">Switch to Video</button>
@@ -25,7 +25,7 @@
     <div id="gis-info-panel">
         LAT: 3.149682<br>
         LON: 101.616348<br>
-        Location: Leeds, the United Kingdom<br>
+        <span id="location-text">Location: Leeds, the United Kingdom</span>
     </div>
 
     <button id="gis-toggle-btn">info</button>

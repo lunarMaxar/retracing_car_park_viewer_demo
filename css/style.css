@@ -47,33 +47,19 @@ body, html {
     left: 0;
     object-fit: cover;
     -webkit-user-drag: none;
-}
-
-#canvas-container {
-    opacity: 1;
-    visibility: visible;
-    z-index: 1;
-}
-
-#canvas-container.hidden-canvas {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: -1;
+    transition: opacity 0.3s;
 }
 
 #video-player {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    z-index: -1;
+    z-index: 5;
 }
 
-#video-player.active-video {
+#canvas-container {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
-    z-index: 5;
 }
 
 #toggle-button {
@@ -95,15 +81,15 @@ body, html {
 #gis-info-panel {
     position: absolute;
     top: 40px;
-    left: 40px;
-    padding: 20px;
+    left: 25px;
+    padding: 15px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.6;
     z-index: 10;
     display: none;
@@ -117,14 +103,14 @@ body, html {
     position: absolute;
     top: 70px;
     right: 40px;
-    padding: 12px 24px;
+    padding: 8px 12px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
     z-index: 10;
 }
@@ -138,25 +124,24 @@ body, html {
         top: 40px;
         right: 20px;
     }
-    
+
     #gis-toggle-btn {
-        top: 80px;
+        top: 90px;
         right: 20px;
     }
     
     #text-bottom-left {
-        bottom: 40px;
+        bottom: 110px;
         left: 20px;
     }
-    
+
     #toggle-button {
         bottom: 40px;
         right: 20px;
     }
-    
+
     #gis-info-panel {
-        top: 130px;
-        right: 20px;
-        left: auto;
+        top: 150px;
+        left: 20px;
     }
 }
