@@ -58,28 +58,30 @@ toggleBtn.addEventListener('click', () => {
     showingVideo = !showingVideo;
     if (showingVideo) {
         container.style.opacity = '0';
-        container.style.visibility = 'hidden';
-        
+        container.style.zIndex = '1';
+        container.style.pointerEvents = 'none';
+
         videoPlayer.style.opacity = '1';
-        videoPlayer.style.visibility = 'visible';
-        
-        videoPlayer.load();
+        videoPlayer.style.zIndex = '2';
+        videoPlayer.style.pointerEvents = 'auto';
+
         const playPromise = videoPlayer.play();
-        
         if (playPromise !== undefined) {
             playPromise.catch(error => {
                 console.log("Playback prevented by browser.");
             });
         }
-        
+
         toggleBtn.textContent = 'Switch to 3D';
     } else {
         container.style.opacity = '1';
-        container.style.visibility = 'visible';
-        
+        container.style.zIndex = '2';
+        container.style.pointerEvents = 'auto';
+
         videoPlayer.style.opacity = '0';
-        videoPlayer.style.visibility = 'hidden';
-        
+        videoPlayer.style.zIndex = '1';
+        videoPlayer.style.pointerEvents = 'none';
+
         videoPlayer.pause();
         toggleBtn.textContent = 'Switch to Video';
     }
