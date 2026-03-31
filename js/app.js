@@ -11,7 +11,7 @@ const getContainerHeight = () => {
 
 let currentHeight = getContainerHeight();
 const aspect = window.innerWidth / currentHeight;
-const frustumSize = 0.1; 
+const frustumSize = 0.14;
 const camera = new THREE.OrthographicCamera(
     (frustumSize * aspect) / -2,
     (frustumSize * aspect) / 2,
