@@ -51,7 +51,8 @@ body, html {
 
 #video-player {
     object-fit: cover;
-    z-index: 1;
+    visibility: hidden;
+    z-index: 3;
     opacity: 0;
     pointer-events: none;
 }
@@ -59,7 +60,7 @@ body, html {
 #canvas-container {
     z-index: 2;
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
 }
 
 #toggle-button {
